@@ -231,17 +231,17 @@
     (including the packet loss and delay).
 
     \item
-    Stage 2 (3 - 4 weeks after equipments are ready) is for field measurement and data analysis. 
+    Stage 2 (1 Mar 2010 -- 26 Mar 2010) is for field measurement and data analysis. 
     We plan to collect traces for various locations, various moving speeds, and various service providers.
     Then we analyze these data and try to answer the research question 1 and 2. 
 
     \item
-    Stage 3 (4 - 5 weeks after the analysis) is for designing and implementing scheduling algorithms.
+    Stage 3 (29 Mar 2010 -- 30 Apr 2010) is for designing and implementing scheduling algorithms.
     We will do simulations based on the real traces to test our algorithms. FEC allocations will be considered.
     MDC coding can be a possible option.
 
     \item
-    Stage 4 (4 weeks) is for paper writing and prototype implementation. If we obtain satisfying results
+    Stage 4 (3 May 2010 -- 31 May 2010) is for paper writing and prototype implementation. If we obtain satisfying results
     in stage 3, we will write a paper and submit to proper journal or conference. Moreover, we will further 
     develop a usable prototype of streaming system for video surveillance data and test it with field experiments.
     \end{itemize}
@@ -252,6 +252,10 @@
     Publication: we plan to publish a paper to detail the insights and results we obtained from this project.
     \item
     Software: we plan to develop a concept-prove prototype of streaming system for video-surveillance data.
+    In this system, clients send existed video files to the server using multiple UDP connections, each of which is
+    established on the uplink of a separate HSDPA channel. 
+    Both the server and the clients are built on Linux operation system,
+    and the demultiplexing and multiplexing are implemented on the application layer.
     \end{itemize}
 \section{Significance}
     Our algorithm, if shown to be effective, would be used in expanding port surveillance system 
