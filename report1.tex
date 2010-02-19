@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{setspace}
+\title{Support Remote Video Surveillance by Aggregating Multiple 3G Wireless Channels (Draft)}
+\author{Cheng Wei\\Center for Maritime Studies\\cmscw@nus.edu.sg}
+%\date{}
+\begin{document}
+\maketitle
+\doublespace
+\section{Introduction}
+    Supporting remote video surveillance on offshore islands
+    with undersea fiber-optic cables is expensive. 
+    Exploiting the existed 3G wireless networks to support 
+    video surveillance is cheaper and easier to maintain.   
+    
+    Implementing video streaming in delay-sensitive applications
+    as video surveillance, however, is challenging due to the characteristics
+	of wireless communication. 
+    First, in video surveillance systems, cameras send data to the server
+    using the up-link (devices to base stations), 
+    which usually has less bandwidth than the down-link.
+    Moreover, compared with wired links, 
+    wireless links have higher delay, jitter, and packet loss rate.
+	Having a large buffer in the client side, the common solution to smooth the jitter, 
+    increases the end-to-end delay, 
+	which is not acceptable in delay-sensitive applications.
+
+	A promising solution is to aggregate multiple 3G wireless channels
+    (possibly from multiple service providers) 
+    to increase both the bandwidth and quality of service. 
+	With multiple channels, the chance of all channels simultaneously suffer 
+	from the fading, external interference, or congestion decreases. 
+    As a result, the quality of service can be increased by carefully distribute the
+    data among the channels based on their real time conditions. 
+
+	Therefore, our study focuses on how to implement a remote video surveillance system
+    with satisfying throughput, acceptable delay, and enough reliability 
+	by aggregating multiple 3G network channels. 
+\section{Related Works}
+    Aggregating bandwidth of multiple connections (also called inverse multiplexing)
+    has been studied by many researchers recently. 
+    These studies mainly target at two problems:
+    (i) how to aggregate multiple connections into one virtual connection
+    to be used by the applications; and
+    (ii) how to properly distribute and schedule data among multiple connections
+    to increase reliability and reduce delay and jitter.
+
+	Ideally we should enable the current video applications to use 
+	multiple network connections without any modification. 
+	For this purpose, usually multiple connections are aggregated 
+	into one virtual connection. 
+	This aggregation can be implemented in various levels. 
+    
+    %Aggregation can be implemented at different layers.
+	Link layer aggregation is used by 
+	ISPs to combine multiple physical links to one logical link 
+	(e.g \cite{snoeren:adaptive}). 
+	We do not consider implementation on link layer since it involves the
+	equipments that only the service provider can control. 
+    Moreover, when we use networks provided by multiple service providers, 
+    it is not feasible to combine them into one logical link.
+
+    Aggregation in network layer is a common solution used 
+    by many researchers \cite{phatak:novel, chebrolu:bandwidth}. Both IP-tunneling and NAT technique
+    can be used to provide a virtual IP route transparently to upper layers.
+    This method involves the least modification to the system
+    and the implementation is easy, but it has several drawbacks.
+    First, it is complex to support TCP congestion avoidance scheme
+    correctly since the transport layer has no idea that multiple connections exist.
+    Even for UDP-based applications, to keep TCP-friendliness on
+    each link is difficult if it is required.
+    Second, it is hard for the IP layer to do content-aware 
+    optimization. Although a TOS field exists in the IP header,
+    it is not commonly used by the applications and there is no easy way
+    to set them by the applications.
+
+	%Phatak et al. \cite{phatak:ip} proposed a method to aggregate 
+	%the channels in network layer with IP-tunneling. 
+	%In the sender, a normal IP packet is encapsulated into another
+	%IP packet having an extra IP header, 
+	%which may include different source IP address. 
+	%These IP packets with extra IP header will be sent 
+	%through different channels. 
+	%At the receiver side the extra header will be removed 
+	%in the network layer before delivering to the upper layer. 
+	%As a result, the upper layers have no idea multiple connections 
+	%are used in the transmission. 
+
+    The most systematic way to support the aggregation is 
+    to develop a new protocol in the transport layer. 
+	SCTP \cite{rfc4960} uses multiple connections in a 
+	single transport layer (virtual) connection, 
+	but only one main connection is used to transmit data and others are 
+	used for retransmission. 
+	El AL et al. Proposed LS-SCTP \cite{elal:transport} as an extension
+	to SCTP to use multiple connections simultaneously for data transmission.  
+    Support bandwidth aggregation in transport layer is the best 
+    way in theory, but in practice it requires modification
+    of operation systems and difficult to be accepted widely.
+    Moreover, to design and implement a new transport layer protocol
+    to be friendly with widely applied TCP is not a easy task.
+
+    Aggregation bandwidth in the application layer \cite{qureshi:tavarua}
+    is easy to implement since it involves no modification of operation systems.
+    Moreover, applications have the flexibility to control
+    the scheduling, so context-aware optimization is easy to be implemented. 
+    Modifications, however,  are needed in both the server and the 
+    client side. Moreover, how to support the large amount of 
+    legacy applications with minimal modification remains a question. 
+    Fortunately, in our scenario we have control on both the server and the 
+    clients. Moreover, we are developing new application, so aggregation
+    bandwidth in the application layer is appropriate.
+
+    The second main problem is how to distribute data and how
+    to schedule the transmission over multiple connections
+    such that the delay and reordering can be minimized.
+    Most of the current studies assume the bandwidth and the
+    delay of the channels change slowly and can be easily measured
+    on the fly, 
+    so the future value can be predicted
+    based on the previous average value. 
+    Some field experiments, however, show that the bandwidth
+    and the delay of wireless channels changes quickly and 
+    randomly, which increases the difficulty in developing
+    an effective scheduling algorithm.
+    Some studies did not consider the packet loss, but 
+    bursty packet losses exist in the wireless links and 
+    complicate the scheduling problem.
+
+    Channel coding, such as adding FEC packets to protect
+    data packets, can be used to reduce the negative effect
+    of packet loss and long delay. 
+	Cheung et al. proposed FEC distribution algorithms 
+	based on their analytical model \cite{cheung:smart}.
+    How well their algorithms work under the real 
+    3G wireless networks still needs to be verified
+    with experiments.
+
+	Being specific to video, 
+    Multiple Description Coding (MDC) technique can be used
+    to reduce the negative effect of re-ordering caused by 
+	sending data through multiple connections, because
+    the receiving order of MDC coded packets
+    for the same frame does not matter.
+    Real time MDC encoding algorithm, however, is computation extensive, 
+    and the encoding efficiency is lower than layered encoding
+    algorithm. Whether the gain from higher tolerance of reordering
+    can compensate the loss of low encoding efficiency
+    remains to be examined in experiments.
+\section{Research Questions}
+    Our research aims to address the above-mentioned gaps and
+    implement an prototype of video surveillance system using
+    multiple 3G network channels. We need to answer the following
+    research questions during the study. 
+
+    \emph{What is the characteristic of 3G network channel and 
+    how well it can be measured and predicted?}
+    We need to measure what is the real available throughput of
+    the 3G networks and how it varies versus time. It is also
+    important to do the same measurement on the end-to-end delay.
+    With these measured data, we can further analyze how accurate 
+    we can predict the future bandwidth and delay based on previous
+    average value.
+    
+    %\emph{Whether transmission data simultaneously on multiple 
+    %channels interfere with each other?}
+    %We will do experiments for simultaneous transmission on channels
+    %provided by the same service provider and on channels provided by
+    %different service providers. The answer of this question will
+    %significantly affect the design of scheduling algorithm.
+
+    \emph{Whether the channel characteristics are correlated?}
+    Similarly, we will check on channels provided by the same
+    service provider and on channels provided by different service providers.
+    A reasonable hypothesis is that the characteristics of channels
+    provided by the same service provider are more correlated than
+    the channels provided by different service providers.
+
+    \emph{Could a carefully designed FEC allocation algorithm can
+    significantly reduce the negative effect of re-ordering?}
+    Because the channel characteristics is variable, 
+    packet re-ordering cannot be completely avoided. 
+    Using FEC packets can be one way to address this problem.
+    Sending FEC packets over multiple connections can not only
+    improve the reliability but also reduce the negative effect of long delay,
+    because packets suffers from long delay may be recovered when FEC packets
+    are received from other connections. As a result, 
+    how to adaptively generate and 
+    allocate the FEC packets can be an interesting research topic.
+
+    \emph{Is MDC coding can be applicable and helpful?}
+    Multiple Description Coding (MDC) can be used to reduce the effect
+    of re-ordering and packet loss, because loss of one part of data
+    will not affect decoding of other parts of the data. 
+    MDC coding, however, decrease the compression efficiency and increase
+    the encoding complexity. Whether it is applicable to encode the 
+    video on the fly in the camera side and whether it helps to 
+    reduce the delay need to be examined. 
+\section{Project Approach}
+    \subsection{Short-term Approach}
+    Currently, our project concentrates on streaming of video surveillance data by using
+    the up-links of 3G wireless networks. We use UDP protocol to transmit the video data,
+    and optional retransmission of lost packets can be implemented at application level 
+    (the retransmitted data may be not useful in the real-time surveillance, but will be
+    useful in the recording for future examination).
+
+    To combine the bandwidth from multiple 3G channels, in the application layer, 
+    we will implement a demultiplexer in the camera side and a multiplexer in the server side.
+    They periodically measure the channel parameters, based on which the demultiplexer
+    allocate data and schedule the transmission over multiple channels. FEC packets and MDC
+    coding can be used to further reduce the negative effect of packet loss and long delay.
+
+    \subsection{Long-term Approach}
+    After we obtain more experience in the short-term approach, we can generalize our system
+    to support more channels and more protocols. We plan to include satellite channels and 
+    WIMAX channels into consideration so the system can be applied in a wider area. Moreover,
+    we will consider streaming using TCP or TCP-friendly UDP protocol to be fair with other 
+    TCP flows. Moreover, we will consider bi-direction video and audio transmission
+    so that the system can be used in video conference applications.
+
+\section{Project Schedule}
+    The proposed research (short-term) will be for four months. 
+    
+    \begin{itemize}
+    \item
+    Stage 1 (3 Feb 2010 --  Feb 26 2010) is for literature review and equipment preparation.
+    Moreover, we will begin designing the testbed and implement a base prototype. This base prototype
+    needs to satisfy two objectives: (i) simultaneously creating UDP connections on two different network 
+    interfaces and providing a socket for the applications to use as one virtual connection. 
+    (ii) Sending data on the two UDP connections at various data rates and logging the transmission traces
+    (including the packet loss and delay).
+
+    \item
+    Stage 2 (3 - 4 weeks after equipments are ready) is for field measurement and data analysis. 
+    We plan to collect traces for various locations, various moving speeds, and various service providers.
+    Then we analyze these data and try to answer the research question 1 and 2. 
+
+    \item
+    Stage 3 (4 - 5 weeks after the analysis) is for designing and implementing scheduling algorithms.
+    We will do simulations based on the real traces to test our algorithms. FEC allocations will be considered.
+    MDC coding can be a possible option.
+
+    \item
+    Stage 4 (4 weeks) is for paper writing and prototype implementation. If we obtain satisfying results
+    in stage 3, we will write a paper and submit to proper journal or conference. Moreover, we will further 
+    develop a usable prototype of streaming system for video surveillance data and test it with field experiments.
+    \end{itemize}
+    
+\section{Project Deliverables}
+    \begin{itemize}
+    \item
+    Publication: we plan to publish a paper to detail the insights and results we obtained from this project.
+    \item
+    Software: we plan to develop a concept-prove prototype of streaming system for video-surveillance data.
+    \end{itemize}
+\section{Significance}
+    Our algorithm, if shown to be effective, would be used in expanding port surveillance system 
+    to remote islands with acceptable costs.
+
+\bibliographystyle{abbrv}
+\bibliography{report1}
+\end{document}

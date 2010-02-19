@@ -1,0 +1,188 @@
+@inproceedings{phatak:novel,
+    abstract = {With ubiquitous computing and network access, multiple network conduits are becoming available to mobile as well as static hosts. Selection of the preferred mode of data transfer is a dynamic optimization problem depending on the type of application, its bandwidth/latency/jitter requirements, current network status, cost, power consumption, battery life, and so on. Furthermore, since wireless bandwidth is likely to remain a scarce resource, we foresee scenarios wherein mobile hosts require simultaneous data transfer across multiple IP interfaces to obtain higher overall bandwidth. We present a brief overview of related work identifying schemes that might be applicable to the problem, along with their feasibility, and pros and cons. We then propose a new mechanism to aggregate the bandwidth of multiple IP links by splitting a data flow across multiple network interfaces at the IP level. Our method is transparent to transport (TCP/UDP) and higher layers. We have analyzed the performance characteristics of the aggregation scheme and demonstrated significant gain when the links being aggregated have similar bandwidth and latency. The use of multiple interfaces also enhances reliability. Our analysis identifies the conditions under which the proposed scheme, or any other scheme that stripes a single TCP connection across multiple IP links, can be used to enhance throughput. Several interesting directions for future work have also been identified.},
+    author = {Phatak, D. S. and Goff, T.},
+    booktitle = {Proceeding of INFOCOM 2002},
+    citeulike-article-id = {754233},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1109/INFCOM.2002.1019323},
+    citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber=1019323},
+    day = {23-27},
+    doi = {10.1109/INFCOM.2002.1019323},
+    journal = {INFOCOM 2002. Twenty-First Annual Joint Conference of the IEEE Computer and Communications Societies. Proceedings. IEEE},
+    keywords = {bandwidth-aggreagation, stripping, wireless},
+    location = {New York, NY, USA},
+    month = {June},
+    pages = {773--781},
+    posted-at = {2010-02-10 03:51:23},
+    priority = {3},
+    title = {A novel mechanism for data streaming across multiple IP links for improving throughput and reliability in mobile environments},
+    url = {http://dx.doi.org/10.1109/INFCOM.2002.1019323},
+    volume = {2},
+    year = {2002}
+}
+
+
+
+@article{chebrolu:bandwidth,
+    abstract = {A variety of wireless interfaces are available for today's mobile user to access Internet content. When coverage areas of these different technologies overlap, a terminal equipped with multiple interfaces can use them simultaneously to improve the performance of its applications. In this paper, we motivate the advantages that can be had through simultaneous use of multiple interfaces and present a network layer architecture that enables diverse multiaccess services. In particular, we explore in depth one such service provided by the architecture: Bandwidth Aggregation (BAG) for real-time applications. An important aspect of the architecture when providing BAG services for real-time applications is the scheduling algorithm that partitions the traffic onto different interfaces such that the QoS requirements of the application are met. We propose one such algorithm Earliest Delivery Path First (EDPF), that ensures packets meet their playback deadlines by scheduling packets based on the estimated delivery time of the packets. We show through analysis that EDPF performs close to an idealized Aggregated Single Link (ASL) discipline, where the multiple interfaces are replaced by a single interface with same aggregated bandwidth. A prototype implementation and extensive simulations carried using video and delay traces show the performance improvement BAG with EDPF scheduling offers over using just the Highest Bandwidth Interface (HBI) and other scheduling approaches based on weighted round robin.},
+    author = {Chebrolu, K. and Rao, R. R.},
+    booktitle = {Transactions on Mobile Computing},
+    citeulike-article-id = {2061281},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1109/TMC.2006.1599407},
+    citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber=1599407},
+    day = {24},
+    doi = {10.1109/TMC.2006.1599407},
+    journal = {Mobile Computing, IEEE Transactions on},
+    keywords = {bandwidth-aggreagation, real-time, stripping, wireless},
+    month = {April},
+    number = {4},
+    pages = {388--403},
+    posted-at = {2010-02-10 03:14:57},
+    priority = {3},
+    title = {Bandwidth aggregation for real-time applications in heterogeneous wireless networks},
+    url = {http://dx.doi.org/10.1109/TMC.2006.1599407},
+    volume = {5},
+    year = {2006}
+}
+
+
+
+@article{cheung:smart,
+        abstract = {We consider a community of multi-homed wireless devices, where each device has both a wireless wide area network (WWAN) interface to connect to the Internet and a wireless local area network (WLAN) interface to connect to its neighbors. Suppose users in the community are interested in receiving the same piece of delay-sensitive media content, and are willing to share their network resources. It is obvious that the community can benefit from the bundling of WWAN links and achieve higher aggregate bandwidth that is not possible with a single user with a single WWAN connection. What is not obvious is that by inverse multiplexing or striping packets across multiple WWAN channels, one can also improve the goodput of delay-sensitive media traffic by striping FEC and ARQ packets across available channels. In this paper, we analyze the potential benefits of striping media traffic and develop algorithms that take advantage of these benefits to optimize the delivery of delay-sensitive media streams to a wireless multi-homed device community. Results show dramatic improvement over naive striping schemes such as weighted round robin both in terms of packet loss ratio, and in terms of peak signal-to-noise ratio for H.264 video streaming.},
+            author = {Cheung, G. and Sharma, P. and Lee, Sung-Ju},
+                citeulike-article-id = {6656800},
+                    citeulike-linkout-0 = {http://dx.doi.org/10.1109/JSTSP.2007.902069},
+                        citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4276648},
+                            day = {23},
+                                doi = {10.1109/JSTSP.2007.902069},
+                                    journal = {Selected Topics in Signal Processing, IEEE Journal of},
+                                        month = {July},
+                                            number = {2},
+                                                pages = {319--333},
+                                                    posted-at = {2010-02-12 08:19:23},
+                                                        priority = {2},
+                                                            title = {Smart Media Striping Over Multiple Burst-Loss Channels},
+                                                                url = {http://dx.doi.org/10.1109/JSTSP.2007.902069},
+                                                                    volume = {1},
+                                                                        year = {2007}
+}
+
+
+@proceedings{mdc:puri,
+    abstract = {We present an efficient multiple description (MD) source coding scheme to achieve robust communication over unreliable channels. In contrast to the popular signal processing based methods, we propose channel coding principles to correlate the descriptions, and then use this correlation for combating channel impairments. We propose a fast, nearly optimal algorithm that aims to maximize the expected quality at the receiver given the channel state and the side channel rates. Our scheme can be used in conjunction with any source coder that is scalable, and is most easily matched to coders outputting a progressive bitstream. It has applications to the transmission of audio, images, as well as delay-constrained video signals, and can also be used to achieve reliable multicast transmission over the existing Internet with the use of simple protocols. Comparisons of our scheme on standard test images to some of the existing state-of-the-art signal processing based MD methods suggest that our simple scheme outperforms them by significant margins},
+    author = {Puri, R. and Ramchandran, K.},
+    citeulike-article-id = {6624474},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1109/ACSSC.1999.832349},
+    citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber=832349},
+    day = {06},
+    doi = {10.1109/ACSSC.1999.832349},
+    journal = {Signals, Systems, and Computers, 1999. Conference Record of the Thirty-Third Asilomar Conference on},
+    keywords = {channel-coding, fec, mdc, video-streaming},
+    month = {August},
+    pages = {342--346 vol.1},
+    posted-at = {2010-02-04 07:17:16},
+    priority = {3},
+    title = {Multiple description source coding using forward error correction codes},
+    url = {http://dx.doi.org/10.1109/ACSSC.1999.832349},
+    volume = {1},
+    year = {2002}
+}
+
+
+
+@inproceedings{transport:elal,
+    abstract = {We introduce a transport layer solution for bandwidth aggregation, based on extending stream control transmission protocol (SCTP). The extended SCTP, which we refer to as load-sharing SCTP (LS-SCTP), is able to aggregate the bandwidth of the transmission paths between the communicating endpoints. In addition, LS-SCTP can dynamically add new paths to the bundle, as they become available. To insure that the transport connection does not stall due to the high loss rate or due to continuous failure of individual paths, LS-SCTP includes path monitoring and packet assignment mechanisms. These mechanisms monitor the paths and stripe the packets according to their condition. Simulation results demonstrated the effectiveness of our proposed mechanism in providing throughput and reliability to mobile applications.},
+    author = {El Al, Ahmed A. and Saadawi, Tarek and Lee, Myung},
+    booktitle = {Proceedings of the Second IEEE Annual Conference on Pervasive Computing and Communications Workshops, 2004},
+    citeulike-article-id = {6615032},
+    citeulike-linkout-0 = {http://dx.doi.org/10.1109/PERCOMW.2004.1276911},
+    citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber=1276911},
+    day = {17},
+    doi = {10.1109/PERCOMW.2004.1276911},
+    journal = {Pervasive Computing and Communications Workshops, 2004. Proceedings of the Second IEEE Annual Conference on},
+    keywords = {aggregation, bandwidth, load-sharing, ls-sctp},
+    location = {Orlando, Florida, USA},
+    month = {March},
+    pages = {87--91},
+    posted-at = {2010-02-03 07:24:51},
+    priority = {3},
+    title = {A transport layer load sharing mechanism for mobile wireless hosts},
+    url = {http://dx.doi.org/10.1109/PERCOMW.2004.1276911},
+    year = {2004}
+}
+
+@inproceedings{qureshi:tavarua,
+        abstract = {Tavarua is a multimedia streaming system that leverages network-striping to deliver relatively high bit rate video over present-day cellular wireless wide-area networks. The Tavarua system achieves this by building on our previously developed flexible network-striping middleware. This paper describes a motivating mobile telemedicine application, and the design of the Tavarua system. It also describes experiments in which our initial Tavarua implementation was used to stripe video over multiple 3G cellular-phones from different providers.},
+            address = {New York, NY, USA},
+                author = {Qureshi, Asfandyar and Carlisle, Jennifer and Guttag, John},
+                    booktitle = {MULTIMEDIA '06: Proceedings of the 14th annual ACM international conference on Multimedia},
+                        citeulike-article-id = {1232615},
+                            citeulike-linkout-0 = {http://portal.acm.org/citation.cfm?id=1180639.1180714},
+                                citeulike-linkout-1 = {http://dx.doi.org/10.1145/1180639.1180714},
+                                    doi = {10.1145/1180639.1180714},
+                                        isbn = {1-59593-447-2},
+                                            location = {Santa Barbara, CA, USA},
+                                                pages = {327--336},
+                                                    posted-at = {2010-02-12 08:23:34},
+                                                        priority = {2},
+                                                            publisher = {ACM},
+                                                                title = {Tavarua: video streaming with WWAN striping},
+                                                                    url = {http://dx.doi.org/10.1145/1180639.1180714},
+                                                                        year = {2006}
+}
+
+
+
+
+@misc{rfc4960,
+            title = {{Stream Control Transmission Protocol}},
+                    author = {R. Stewart},
+                            howpublished = {RFC 4960 (Proposed Standard)},
+                                    number = 4960,
+                                            organization = {Internet Engineering Task Force},
+                                                    publisher = {IETF},
+                                                            series = {Request for Comments},
+                                                                    year = 2007,
+                                                                            url = {http://www.ietf.org/rfc/rfc4960.txt},
+                                                                                    
+                                                                                  month = {September},
+                                                                                      biburl = {http://www.bibsonomy.org/bibtex/2789127aef97f97a520ccf63a8a6d824b/henkellermann},
+                                                                                        keywords = {imported},
+                                                                                            }
+
+@inproceedings{elal:transport,
+        abstract = {This paper introduces a transport layer solution forbandwidth aggregation, based on extending Stream ControlTransmission Protocol (SCTP).The extended SCTP, which werefer to as Load-Sharing SCTP (LS-SCTP), is able toaggregate the bandwidth of the transmission paths betweenthe communicating endpoints. In addition, LS-SCTP candynamically add new paths to the bundle, as they becomeavailable. To insure that the transport connection does notstall due to the high loss rate or due to continuous failure ofindividual paths, LS-SCTP includes path monitoring andpacket assignment mechanisms. These mechanisms monitorthe paths and stripe the packets according to their condition.Simulation results demonstrated the effectiveness of ourproposed mechanism in providing throughput and reliabilityto mobile applications.},
+            address = {Washington, DC, USA},
+                author = {Ahmed Abd El Al and Saadawi, Tarek and Lee, Myung},
+                    booktitle = {PERCOMW '04: Proceedings of the Second IEEE Annual Conference on Pervasive Computing and Communications Workshops},
+                        citeulike-article-id = {6656821},
+                            citeulike-linkout-0 = {http://portal.acm.org/citation.cfm?id=978603},
+                                isbn = {0-7695-2106-1},
+                                    pages = {87+},
+                                        posted-at = {2010-02-12 08:30:35},
+                                            priority = {2},
+                                                publisher = {IEEE Computer Society},
+                                                    title = {A Transport Layer Load Sharing Mechanism for Mobile Wireless Hosts},
+                                                        url = {http://portal.acm.org/citation.cfm?id=978603},
+                                                            year = {2004}
+}
+
+@inproceedings{Snoeren:adaptive,
+        abstract = {The limited bandwidth of current wide-area wireless access networks (WWANs) is often insufficient for demanding applications, such as streaming audio or video, data mining applications, or high-resolution imaging. Inverse multiplexing is a standard application-transparent method used to provide higher end-to-end bandwidth by splitting traffic across multiple physical links, creating a single logical channel. While commonly used in ISDN and analog dialup installations, current implementations are designed for private links with stable channel characteristics. Unfortunately, most WWAN technologies use shared channels with highly variable link characteristics, including bandwidth, latency, and loss rates. This paper presents an adaptive inverse multiplexing scheme for WWAN environments, termed link quality balancing, which uses relative performance metrics to adjust traffic scheduling across bundled links. By exchanging loss rate information, we compute relative short-term available bandwidths for each link. We discuss the challenges of adaptation in a WWAN network, CDPD in particular, and present performance measurements of our current implementation of wide-area multi-link PPP (WAMP) for CDPD modems under both constant bit rate (CBR) and TCP loads},
+            author = {Snoeren, A. C.},
+                citeulike-article-id = {6656830},
+                    citeulike-linkout-0 = {http://dx.doi.org/10.1109/GLOCOM.1999.832447},
+                        citeulike-linkout-1 = {http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=832447},
+                            day = {06},
+                                doi = {10.1109/GLOCOM.1999.832447},
+                                    journal = {Global Telecommunications Conference, 1999. GLOBECOM '99},
+                                        month = {August},
+                                            pages = {1665--1672 vol.3},
+                                                posted-at = {2010-02-12 08:35:10},
+                                                    priority = {2},
+                                                        title = {Adaptive inverse multiplexing for wide-area wireless networks},
+                                                            url = {http://dx.doi.org/10.1109/GLOCOM.1999.832447},
+                                                                volume = {3},
+                                                                    year = {2002}
+}
+
+
